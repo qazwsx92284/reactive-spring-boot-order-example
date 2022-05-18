@@ -4,9 +4,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+import java.time.Instant;
 
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 @ApiModel(value="Dish", description = "Object that has properties of Dish")
 public class Dish {
 
@@ -18,7 +22,24 @@ public class Dish {
     private double price;
 
     @ApiModelProperty(name = "timestamp", value = "when order is received", example = "2022-03-24 20:48:05.591")
-    private String timestamp;
+    private Instant timestamp;
+
+    @ApiModelProperty(name = "isDelivered", value = "indicate whether the order is delivered or not", example = "false")
+    private Boolean isDelivered;
+
+    @ApiModelProperty(name = "orderId", value = "the unique id of the order", example = "1102")
+    private Long orderId;
+
+
+    public Dish(String name) {
+        this.name = name;
+    }
+
+    public static Dish deliver(Dish dish) {
+        Dish deliveredDish = new Dish(dish.name);
+        deliveredDish.setIsDelivered(true);
+        return deliveredDish;
+    }
 
 
 }

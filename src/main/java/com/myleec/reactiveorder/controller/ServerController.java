@@ -16,7 +16,7 @@ public class ServerController {
 
     @GetMapping(value = "/orders", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Dish> getDishes() {
-        return kitchenService.getAllDishes();
+        return kitchenService.getAllDishes().map(Dish::deliver);
     }
 
 }
