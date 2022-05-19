@@ -31,14 +31,11 @@ public class Dish {
     private Long orderId;
 
 
-    public Dish(String name) {
-        this.name = name;
-    }
+
 
     public static Dish deliver(Dish dish) {
-        Dish deliveredDish = new Dish(dish.name);
-        deliveredDish.setIsDelivered(true);
-        return deliveredDish;
+        dish.setIsDelivered(true);
+        return dish;
     }
 
 
